@@ -2,13 +2,13 @@
 
 use Illuminate\Database\Seeder;
 
-class FactorySeeder extends Seeder
+class UsersFactorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run()
     {
-        // $this->call(UsersFactorySeeder::class);
+        factory(App\Models\User::class, 1000)->create();
     }
 }
