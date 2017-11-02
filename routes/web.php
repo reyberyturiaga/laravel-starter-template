@@ -13,3 +13,7 @@
 
 // Welcome page
 Route::view('/', 'welcome')->name('welcome');
+
+// Registration routes
+Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
+Route::post('register', ['as' => 'register.submit', 'uses' => 'Auth\RegisterController@register']);
