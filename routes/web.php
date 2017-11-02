@@ -28,3 +28,6 @@ Route::get('password/reset', ['as' => 'password.request', 'uses' => 'Auth\Forgot
 Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
 Route::get('password/reset/{token}', ['as' => 'password.reset', 'uses' => 'Auth\ResetPasswordController@showResetForm']);
 Route::post('password/reset', ['as' => 'password.validate', 'uses' => 'Auth\ResetPasswordController@reset']);
+
+// Home page
+Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
