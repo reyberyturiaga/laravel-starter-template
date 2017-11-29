@@ -1,24 +1,34 @@
 webpackJsonp([1],{
 
-/***/ 12:
+/***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(13);
-module.exports = __webpack_require__(37);
+__webpack_require__(15);
+module.exports = __webpack_require__(39);
 
 
 /***/ }),
 
-/***/ 13:
+/***/ 15:
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
+/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, __webpack_provided_window_dot_$) {/**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-window._ = __webpack_require__(3);
+window._ = __webpack_require__(4);
+
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
+
+__webpack_provided_window_dot_$ = __webpack_provided_window_dot_jQuery = __webpack_require__(1);
+
+__webpack_require__(5);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -26,7 +36,7 @@ window._ = __webpack_require__(3);
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(4);
+window.axios = __webpack_require__(6);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -44,9 +54,9 @@ if (token) {
   console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-window.Vue = __webpack_require__(11);
+window.Vue = __webpack_require__(13);
 
-__webpack_require__(35);
+__webpack_require__(37);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -63,11 +73,12 @@ var app = new Vue({
  * that the application will be needing as dependencies.
  */
 
-__webpack_require__(36);
+__webpack_require__(38);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
 
 /***/ }),
 
-/***/ 35:
+/***/ 37:
 /***/ (function(module, exports) {
 
 /**
@@ -76,7 +87,7 @@ __webpack_require__(36);
 
 /***/ }),
 
-/***/ 36:
+/***/ 38:
 /***/ (function(module, exports) {
 
 /**
@@ -85,11 +96,11 @@ __webpack_require__(36);
 
 /***/ }),
 
-/***/ 37:
+/***/ 39:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ })
 
-},[12]);
+},[14]);
