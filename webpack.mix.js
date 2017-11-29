@@ -11,6 +11,8 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.autoload({
+        jquery: ['$', 'window.jQuery',"jQuery","window.$","jquery","window.jquery"]})
+   .js('resources/assets/js/app.js', 'public/js')
    .extract(['lodash', 'axios', 'vue', 'jquery', 'bootstrap-sass'])
    .sass('resources/assets/sass/app.scss', 'public/css');
