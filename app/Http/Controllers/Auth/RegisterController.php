@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
 
 class RegisterController extends Controller
 {
@@ -30,27 +32,21 @@ class RegisterController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * User model instance.
+     *
+     * @var \App\Models\User
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+    private $user;
 
     /**
-     * Get a validator for an incoming registration request.
+     * Create a new controller instance.
      *
-     * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param \App\Models\User $user
      */
-    protected function validator(array $data)
+    public function __construct(User $user)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        $this->middleware('guest');
+        $this->user = $user;
     }
 
     /**
@@ -60,12 +56,28 @@ class RegisterController extends Controller
      *
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(array $data): User
     {
-        return User::create([
+        return $this->user->create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param \App\Http\Requests\RegistrationRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function register(RegistrationRequest $request): RedirectResponse
+    {
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return redirect($this->redirectPath());
     }
 }
