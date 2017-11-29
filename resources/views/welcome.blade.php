@@ -1,95 +1,42 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('_layouts.app', ['page' => 'welcome-page'])
 
-        <title>Laravel</title>
+@section('header')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@stop
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+@section('navigation')
+<div class="welcome-page__navigation">
+    @auth
+    <a href="{{ route('home') }}" class="welcome-page__links">Home</a>
+    @endauth
 
-            .full-height {
-                height: 100vh;
-            }
+    @guest
+    <a href="{{ route('login') }}" class="welcome-page__links">Login</a>
+    <a href="{{ route('register') }}" class="welcome-page__links">Register</a>
+    @endguest
+</div>
+@stop
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+@section('content')
+<div class="welcome-page__content">
+    <div class="welcome-page__title">
+        Laravel
+    </div>
 
-            .position-ref {
-                position: relative;
-            }
+    <div>
+        <a href="https://laravel.com/docs" class="welcome-page__links">Documentation</a>
+        <a href="https://laracasts.com" class="welcome-page__links">Laracasts</a>
+        <a href="https://laravel-news.com" class="welcome-page__links">News</a>
+        <a href="https://forge.laravel.com" class="welcome-page__links">Forge</a>
+        <a href="https://github.com/laravel/laravel" class="welcome-page__links">GitHub</a>
+    </div>
+</div>
+@stop
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+@section('sidebar')
 
-            .content {
-                text-align: center;
-            }
+@stop
 
-            .title {
-                font-size: 84px;
-            }
+@section('footer')
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+@stop
