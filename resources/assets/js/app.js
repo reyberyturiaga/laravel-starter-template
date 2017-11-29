@@ -43,3 +43,10 @@ require('./components');
 const app = new Vue({
     el: '#app'
 });
+
+/**
+ * Lastly, we will load other javascript plugins and libraries
+ * that the application will be needing as dependencies.
+ */
+
+require('./plugins');
