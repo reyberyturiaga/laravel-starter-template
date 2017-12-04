@@ -60,6 +60,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Register
                                 </button>
+
+                                @component('_components.message.error', ['field' => 'g-recaptcha-response'])
+
+                                @endcomponent
+
+                                @captcha()
                             </div>
                         </div>
                     </form>
