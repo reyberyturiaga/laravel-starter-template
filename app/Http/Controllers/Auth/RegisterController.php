@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\Auth\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
 
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * User model instance.
@@ -74,10 +74,8 @@ class RegisterController extends Controller
      */
     public function register(RegistrationRequest $request): RedirectResponse
     {
-        event(new Registered($user = $this->create($request->all())));
+        event(new UserRegistered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
-
-        return redirect($this->redirectPath());
+        return redirect($this->redirectPath())->with('status', 'We sent you an activation code. Please check your email.');
     }
 }

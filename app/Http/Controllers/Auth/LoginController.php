@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -33,5 +36,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Handle authenticated user.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User         $user
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function authenticated(Request $request, User $user): RedirectResponse
+    {
+        if (! $user->activated) {
+            auth()->logout();
+
+            return back()->with('warning', 'You need to confirm your account. We have sent you an activation code, please check your email.');
+        }
+
+        return redirect()->intended($this->redirectPath());
     }
 }

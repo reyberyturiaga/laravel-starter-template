@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PasswordResetRequest;
+use App\Models\User;
+use App\Services\UserActivation;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Password;
@@ -31,11 +33,30 @@ class ResetPasswordController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * UserActivation service class instance.
+     *
+     * @var \App\Services\UserActivation
      */
-    public function __construct()
+    private $activationService;
+
+    /**
+     * User model instance.
+     *
+     * @var \App\Models\User
+     */
+    private $user;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @param \App\Services\UserActivation $activationService
+     * @param \App\Models\User             $user
+     */
+    public function __construct(UserActivation $activationService, User $user)
     {
         $this->middleware('guest');
+        $this->activationService = $activationService;
+        $this->user = $user;
     }
 
     /**
@@ -53,8 +74,16 @@ class ResetPasswordController extends Controller
             }
         );
 
-        return $response == Password::PASSWORD_RESET
-            ? $this->sendResetResponse($response)
-            : $this->sendResetFailedResponse($request, $response);
+        if ($response !== Password::PASSWORD_RESET) {
+            return $this->sendResetFailedResponse($request, $response);
+        }
+
+        $user = $this->user->where('email', $request['email'])->first();
+
+        if (! $user->activated) {
+            $this->activationService->activateUserInstance($user);
+        }
+
+        return $this->sendResetResponse($response);
     }
 }
