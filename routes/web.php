@@ -18,6 +18,9 @@ Route::view('/', 'welcome')->name('welcome');
 Route::get('register', ['as' => 'register', 'uses' => 'Auth\RegisterController@showRegistrationForm']);
 Route::post('register', ['as' => 'register.submit', 'uses' => 'Auth\RegisterController@register']);
 
+// User activation route
+Route::get('user/activate/{token}', ['as' => 'user.activate', 'uses' => 'Auth\ActivateUserController@activate']);
+
 // Authentication routes
 Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 Route::post('login', ['as' => 'login.validate', 'uses' => 'Auth\LoginController@login']);
