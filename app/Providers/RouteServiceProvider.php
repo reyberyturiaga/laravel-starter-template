@@ -21,7 +21,17 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->setupRouteParameterPatterns();
+
         parent::boot();
+    }
+
+    /*
+     * Define route parameter patterns.
+     */
+    private function setupRouteParameterPatterns()
+    {
+        Route::pattern('provider', 'facebook|twitter|github');
     }
 
     /**
