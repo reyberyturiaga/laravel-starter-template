@@ -26,6 +26,10 @@ Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginF
 Route::post('login', ['as' => 'login.validate', 'uses' => 'Auth\LoginController@login']);
 Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
+// Social authentication routes
+Route::get('login/{provider}', ['as' => 'login.provider', 'uses' => 'Auth\SocialAuthenticationController@redirectToProvider']);
+Route::get('login/{provider}/callback', ['as' => 'login.provider.callback', 'uses' => 'Auth\SocialAuthenticationController@handleProviderCallback']);
+
 // Password reset routes
 Route::get('password/reset', ['as' => 'password.request', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
 Route::post('password/email', ['as' => 'password.email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
