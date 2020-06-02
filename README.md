@@ -1,3 +1,9 @@
+# :warning: WARNING
+
+This is just a placeholder package to reserve **reyberyturiaga** as a vendor name in packagist. This is an old template for Laravel (version 5.5) that I've used. I have no intention of updating this template to the latest version of Laravel since I'm keeping those templates as private repositories.
+
+*You're just paranoid! Who the hell would use your name as vendor for their own package?*. Yeah, I know but I'd rather play it safe and not let anyone use my name for their own packages. People do stupid shit all the times. But, you might still find this repository useful for educational purposes, although the content might already be outdated and no longer relevant with the current versions of Laravel. That's the price we have to pay for the power that software bestowed upon us mortal coders!
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
