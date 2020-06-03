@@ -1,4 +1,4 @@
-# WARNING
+## WARNING
 
 This is just a placeholder package to reserve **reyberyturiaga** as a vendor name in packagist. This is an old template for Laravel (version 5.5) that I've used. I have no intention of updating this template to the latest version of Laravel since I'm keeping those templates as private repositories.
 
